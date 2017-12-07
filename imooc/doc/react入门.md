@@ -266,7 +266,7 @@ React组件有若干个钩子函数，在组件不同的状态执行
         componentWillUnmount(){
             console.log('组件卸载了')
         }
-         addSolder=()=>{
+         addSolder=()=>{‰
             console.log(this)
             this.setState({
                 solders:[...this.state.solders,'新兵'+Math.random()]
