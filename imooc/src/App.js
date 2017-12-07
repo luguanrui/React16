@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button,List} from 'antd-mobile'
 
 class App extends React.Component{
     render(){
@@ -52,15 +53,16 @@ class YiYing extends React.Component{
      }
     render(){
         console.log('组件正在加载')
+        const Item = List.Item
         return (
             <div>
                 <h2>一营营长：{this.props.yyz}</h2>
-                <button onClick={this.addSolder}>新兵入伍</button>
-                <ul>
+                <Button onClick={this.addSolder} type="primary">新兵入伍</Button>
+                <List renderHeader={()=>'士兵列表'}>
                     {this.state.solders.map(v=>{
-                        return <li key={v}>{v}</li>
+                        return <List.Item key={v}>{v}</List.Item>
                     })}
-                </ul>
+                </List>
             </div>
             )
     }
