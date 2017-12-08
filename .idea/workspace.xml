@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d1b15ba-9344-493e-993a-04aa258a75d9" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imooc/doc/redux和react-router.md" afterPath="$PROJECT_DIR$/imooc/doc/redux和react-router.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imooc/package-lock.json" afterPath="$PROJECT_DIR$/imooc/package-lock.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imooc/package.json" afterPath="$PROJECT_DIR$/imooc/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imooc/src/App.js" afterPath="$PROJECT_DIR$/imooc/src/App.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imooc/src/index.js" afterPath="$PROJECT_DIR$/imooc/src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imooc/src/index.redux.js" afterPath="$PROJECT_DIR$/imooc/src/index.redux.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,9 +27,9 @@
       <file leaf-file-name="redux和react-router.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/imooc/doc/redux和react-router.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="FIRST">
-              <first_editor relative-caret-position="630">
-                <caret line="170" column="4" lean-forward="false" selection-start-line="170" selection-start-column="4" selection-end-line="170" selection-end-column="4" />
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="1391">
+                <caret line="237" column="4" lean-forward="false" selection-start-line="237" selection-start-column="4" selection-end-line="237" selection-end-column="4" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -37,8 +40,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imooc/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="73" lean-forward="false" selection-start-line="8" selection-start-column="73" selection-end-line="8" selection-end-column="73" />
+            <state relative-caret-position="378">
+              <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -49,8 +52,8 @@
       <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imooc/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="80" lean-forward="false" selection-start-line="19" selection-start-column="80" selection-end-line="19" selection-end-column="80" />
+            <state relative-caret-position="522">
+              <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -90,10 +93,10 @@
         <option value="$PROJECT_DIR$/imooc/package.json" />
         <option value="$PROJECT_DIR$/imooc/doc/antdMobile.md" />
         <option value="$PROJECT_DIR$/imooc/doc/redux.md" />
+        <option value="$PROJECT_DIR$/imooc/src/index.redux.js" />
+        <option value="$PROJECT_DIR$/imooc/src/index.js" />
         <option value="$PROJECT_DIR$/imooc/src/App.js" />
         <option value="$PROJECT_DIR$/imooc/doc/redux和react-router.md" />
-        <option value="$PROJECT_DIR$/imooc/src/index.js" />
-        <option value="$PROJECT_DIR$/imooc/src/index.redux.js" />
       </list>
     </option>
   </component>
@@ -239,7 +242,7 @@
       <workItem from="1512564608394" duration="3964000" />
       <workItem from="1512608595139" duration="11854000" />
       <workItem from="1512646153198" duration="141000" />
-      <workItem from="1512695031566" duration="8815000" />
+      <workItem from="1512695031566" duration="11014000" />
     </task>
     <task id="LOCAL-00001" summary="readme">
       <created>1512566393691</created>
@@ -266,13 +269,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24774000" />
+    <option name="totallyTimeSpent" value="26973000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="494" y="0" width="946" height="900" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33945945" sideWeight="0.49576783" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.058491897" sideWeight="0.49576783" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -512,26 +515,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imooc/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="80" lean-forward="false" selection-start-line="19" selection-start-column="80" selection-end-line="19" selection-end-column="80" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imooc/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="73" lean-forward="false" selection-start-line="8" selection-start-column="73" selection-end-line="8" selection-end-column="73" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imooc/src/index.redux.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -540,11 +523,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/imooc/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imooc/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/imooc/doc/redux和react-router.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="630">
-            <caret line="170" column="4" lean-forward="false" selection-start-line="170" selection-start-column="4" selection-end-line="170" selection-end-column="4" />
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="1391">
+            <caret line="237" column="4" lean-forward="false" selection-start-line="237" selection-start-column="4" selection-end-line="237" selection-end-column="4" />
             <folding />
           </first_editor>
           <second_editor />

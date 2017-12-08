@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {createStore,applyMiddleware,compose} from 'redux'
 import thunk from 'redux-thunk'
+import {Provider} from 'react-redux'
 
 import App from './App'
 import {counter,addGun,removeGun,addGunAsync} from './index.redux'
@@ -13,12 +14,11 @@ const store = createStore(counter,compose(
     reduxDevTools
 ));
 
-function render() {
-    ReactDOM.render(<App store={store} addGun={addGun} removeGun={removeGun} addGunAsync={addGunAsync}/>, document.getElementById('root'))
-}
+ReactDOM.render(
+    <Provider store={store}>
+        <App/>
+    </Provider>
+    , document.getElementById('root')
+)
 
-render();
-
-// 订阅render函数，如果组件的状态有变化，组件会重新执行
-store.subscribe(render);
 
