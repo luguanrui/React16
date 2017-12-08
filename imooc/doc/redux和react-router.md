@@ -102,7 +102,73 @@ src/App.js
 
     使用：使用applyMiddleware开启thunk中间件，action返回函数，使用dispatch提交action
     
+    src/index.js
+    
+    import React from 'react'
+    import ReactDOM from 'react-dom'
+    import {createStore,applyMiddleware} from 'redux'
+    import thunk from 'redux-thunk'
+    
+    import App from './App'
+    import {counter,addGun,removeGun,addGunAsync} from './index.redux'
+    
+    // 创建store
+    const store = createStore(counter,applyMiddleware(thunk));
+    
+    function render() {
+        ReactDOM.render(<App store={store} addGun={addGun} removeGun={removeGun} addGunAsync={addGunAsync}/>, document.getElementById('root'))
+    }
+    
+    render();
+    
+    // 订阅render函数，如果组件的状态有变化，组件会重新执行
+    store.subscribe(render);
+    
+    scr/index.redux.js
+    
+    const ADD_GUN = '加机关枪'
+    const REMOVE_GUN = '减机关枪'
+    
+    // reducer
+    export function counter(state = 0, action) {
+        switch (action.type) {
+            case ADD_GUN:
+                return state + 1
+            case REMOVE_GUN:
+                return state - 1
+            default:
+                return 10
+        }
+    }
+    
+    // action creator
+    export function addGun() {
+        return {type: ADD_GUN}
+    }
+    
+    export function removeGun() {
+        return {type: REMOVE_GUN}
+    }
+    
+    // 异步，延迟2s
+    export function addGunAsync() {
+        return dispatch=>{
+            setTimeout(()=>{
+                dispatch(addGun())
+            },2000)
+        }
+    }
+    
+
+    
 * npm install redux-devtools-extension 并开启
+
+    新建store的时候判断window.devToolsExtension
+    
+    使用compose结合thunk和window.devToolsExtension
+    
+    调试窗的redux选项卡实时看到state
+    
 
 * 使用react-redux优雅的连接react和redux
 

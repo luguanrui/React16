@@ -26,7 +26,7 @@ export function removeGun() {
 export function addGunAsync() {
     return dispatch=>{
         setTimeout(()=>{
-            dispatch(addGun())
+            dispatch(removeGun())
         },2000)
     }
 }
