@@ -1,76 +1,25 @@
-import React from 'react';
-import {Button,List} from 'antd-mobile'
+import React from 'react'
+import {addGun} from "./index.redux";
+
+// import {addGUN} from "./index.redux";
 
 class App extends React.Component{
+    constructor(props){
+        super(props)
+    }
     render(){
-        const boss = '李云龙'
-        return (
+        const store = this.props.store;
+        const num = store.getState();
+        const addGun = this.props.addGun;
+        const removeGun = this.props.removeGun;
+        return(
             <div>
-                <h2>团长：{boss}</h2>
-                <YiYing yyz='张大彪'></YiYing>
-                <QiBingLian qblz='孙连胜'></QiBingLian>
+                <h1>现在有机枪{num}挺</h1>
+                <button onClick={()=>{store.dispatch(addGun())}}>申请武器</button>
+                <button onClick={()=>{store.dispatch(removeGun())}}>上交武器</button>
             </div>
-
         )
     }
 }
 
-class YiYing extends React.Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            solders:['虎子','柱子','王根生']
-        }
-        console.log('组件初始化')
-    }
-    componentWillMount(){
-        console.log('组件马山就要挂载了')
-    }
-    componentDidMount(){
-        console.log('组件已经挂载')
-    }
-    componentWillReceiveProps(nextPros){
-        console.log('组件要接受父组件的值了')
-    }
-    shouldComponentUpdate(){
-        console.log('判断是不是要更新组件')
-        return true;
-    }
-    componentWillUpdate(){
-        console.log('马上就要更新组件了')
-    }
-    componentDidUpdate(){
-        console.log('组件更新完毕')
-    }
-    componentWillUnmount(){
-        console.log('组件卸载了')
-    }
-     addSolder=()=>{
-        console.log(this)
-        this.setState({
-            solders:[...this.state.solders,'新兵'+Math.random()]
-        })
-     }
-    render(){
-        console.log('组件正在加载')
-        const Item = List.Item
-        return (
-            <div>
-                <h2>一营营长：{this.props.yyz}</h2>
-                <Button onClick={this.addSolder} type="primary">新兵入伍</Button>
-                <List renderHeader={()=>'士兵列表'}>
-                    {this.state.solders.map(v=>{
-                        return <List.Item key={v}>{v}</List.Item>
-                    })}
-                </List>
-            </div>
-            )
-    }
-}
-
-function QiBingLian(props) {
-    return <h2>骑兵连连长：{props.qblz}</h2>
-}
-
-export default App
-
+export default App;
