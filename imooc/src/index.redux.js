@@ -21,3 +21,12 @@ export function addGun() {
 export function removeGun() {
     return {type: REMOVE_GUN}
 }
+
+// 异步，延迟2s
+export function addGunAsync() {
+    return dispatch=>{
+        setTimeout(()=>{
+            dispatch(addGun())
+        },2000)
+    }
+}

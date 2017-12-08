@@ -11,7 +11,7 @@ subscribe订阅render函数，每次修改懂重新渲染
 redux相关内容，移到单独的文件index.redux.js单独管理
 
 
-### 使用redux
+### 手动连接使用redux
 
 #### 定义redux,包括reducer，actions
 
@@ -92,8 +92,19 @@ src/App.js
     export default App;
     
 
+### 处理异步，调试工具，更优雅的和react结合
 
+* redux处理异步，需要redux-thunk插件
 
+    redux-thunk中间件可以让action创建函数先不返回一个action对象，而是返回一个函数，函数传递两个参数(dispatch,getState),在函数体内进行业务逻辑的封装
+
+    安装： npm install redux-thunk --save
+
+    使用：使用applyMiddleware开启thunk中间件，action返回函数，使用dispatch提交action
+    
+* npm install redux-devtools-extension 并开启
+
+* 使用react-redux优雅的连接react和redux
 
 
 
