@@ -161,7 +161,7 @@ src/App.js
     
 
     
-* npm install redux-devtools-extension 并开启
+* npm install redux-devtools-extension --save-dev并开启
 
     新建store的时候判断window.devToolsExtension
     
@@ -269,6 +269,62 @@ src/App.js
         export default App;
     
     connect可以用装饰器的方式来写
+    
+    使用装饰器优化connect代码
+    
+    * npm run eject弹出个性化设置
+    * npm install babel-plugin-transform-decorators-legacy --save插件
+    * package.json里babel加上plugins配置
+    
+     src/App.js
+    
+        import React from 'react'
+        import {connect} from 'react-redux'
+        import {addGun, removeGun, addGunAsync} from './index.redux'
+        
+        
+        // 将state放置到num中,给到props
+        // const mapStateProps = (state) => {
+        //     return {num: state}
+        // };
+        
+        // actions函数
+        // const actionCreators = {addGun, removeGun, addGunAsync};
+        
+        
+        // 传入state，和actions函数，返回将actions设置到App的props上
+        // App = connect(mapStateProps, actionCreators)(App);
+        
+        // 对以上的方法做简写
+        @connect(
+            // 第一个属性：你要什么属性，放到props里
+            state=>({num:state}),
+            // 第二个属性：你要什么方法，放到props里面，会自动dispatch
+            {addGun, removeGun, addGunAsync})
+        
+        class App extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <h1>现在有机枪{this.props.num}挺</h1>
+                        {/*不再使用store.dispatch(addGun()),因为addGun已经有了dispatch的功能*/}
+                        <button onClick={this.props.addGun}>申请武器</button>
+                        <button onClick={this.props.removeGun}>上交武器</button>
+                        <button onClick={this.props.addGunAsync}>拖两天上交武器</button>
+                    </div>
+                )
+            }
+        }
+        export default App;
+        
+     React后续
+     
+        * 什么数据应该放在react里
+        
+        * redux管理数据
+        
+        * redux管理聊天数据   
+    
 
 
 

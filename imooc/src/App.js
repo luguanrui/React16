@@ -2,6 +2,26 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {addGun, removeGun, addGunAsync} from './index.redux'
 
+
+// 将state放置到num中,给到props
+// const mapStateProps = (state) => {
+//     return {num: state}
+// };
+
+// actions函数
+// const actionCreators = {addGun, removeGun, addGunAsync};
+
+
+// 传入state，和actions函数，返回将actions设置到App的props上
+// App = connect(mapStateProps, actionCreators)(App);
+
+// 对以上的方法做简写
+@connect(
+    // 第一个属性：你要什么属性，放到props里
+    state=>({num:state}),
+    // 第二个属性：你要什么方法，放到props里面，会自动dispatch
+    {addGun, removeGun, addGunAsync})
+
 class App extends React.Component {
     render() {
         return (
@@ -16,15 +36,6 @@ class App extends React.Component {
     }
 }
 
-// 将state放置到num中,给到props
-const mapStateProps = (state) => {
-    return {num: state}
-};
 
-// actions函数
-const actionCreators = {addGun, removeGun, addGunAsync};
-
-// 传入state，和actions函数，返回将actions设置到App的props上
-App = connect(mapStateProps, actionCreators)(App);
 
 export default App;
