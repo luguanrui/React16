@@ -161,7 +161,7 @@ src/App.js
     
 
     
-* npm install redux-devtools-extension --save-dev并开启
+* npm install redux-devtools-extension --save并开启
 
     新建store的时候判断window.devToolsExtension
     
@@ -270,14 +270,23 @@ src/App.js
     
     connect可以用装饰器的方式来写
     
-    使用装饰器优化connect代码
+    使用装饰器优化connect代码@connect()
     
     * npm run eject弹出个性化设置
-    * npm install babel-plugin-transform-decorators-legacy --save插件
+    * npm install babel-plugin-transform-decorators-legacy --save-dev插件
     * package.json里babel加上plugins配置
     
-     src/App.js
+    package.json配置
     
+         "babel": {
+            "presets": [
+              "react-app"
+            ],
+            "plugins": ["transform-decorators-legacy"]
+          },
+    
+    src/App.js
+   
         import React from 'react'
         import {connect} from 'react-redux'
         import {addGun, removeGun, addGunAsync} from './index.redux'
@@ -317,7 +326,7 @@ src/App.js
         }
         export default App;
         
-     React后续
+    React后续
      
         * 什么数据应该放在react里
         
@@ -325,8 +334,39 @@ src/App.js
         
         * redux管理聊天数据   
     
+## react-router4基础知识
+
+### react-router4是什么
+    
+   react-router4是全新的版本，和之前版本不兼容，浏览器和RN均兼容
+    
+   react开发单页应用必备，践行路由即组件的概念
+    
+   核心概念：动态路由、Route、Link、Switch
+  
+   
+#### 一个简单的例子 
+       
+   安装：npm install react-router-dom --save  
+    
+   router4使用react-router-dom作为浏览器的路由
+    
+   忘记router2的内容，拥抱最新的router4 
+   
+#### 入门组件
+
+   BrowserRouter，HashRouter包裹整个应用，只使用一次
+   
+   Router路由对应渲染的组件，可嵌套
+   
+   Link跳转专用   
+       
+   
+    
+### react-router4核心概念
+### react-router4实战
 
 
 
-## react-router
+
  

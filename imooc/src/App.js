@@ -15,12 +15,15 @@ import {addGun, removeGun, addGunAsync} from './index.redux'
 // 传入state，和actions函数，返回将actions设置到App的props上
 // App = connect(mapStateProps, actionCreators)(App);
 
-// 对以上的方法做简写
+/**
+ * 对以上的方法做简写，用于从UI组件生成容器组件，connect的意思就是把这两种组件连起来
+ * 第一个属性：你要什么属性，放到props里
+ * 第二个属性：你要什么方法，放到props里面，会自动dispatch
+ */
 @connect(
-    // 第一个属性：你要什么属性，放到props里
     state=>({num:state}),
-    // 第二个属性：你要什么方法，放到props里面，会自动dispatch
-    {addGun, removeGun, addGunAsync})
+    {addGun, removeGun, addGunAsync}
+    )
 
 class App extends React.Component {
     render() {
