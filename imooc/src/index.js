@@ -20,6 +20,16 @@ function Erying() {
 function Qibinglian() {
     return <h1>骑兵连</h1>
 }
+class Test extends React.Component{
+    render(){
+        console.log(this.props)
+        return (
+            <div>
+                <h1>测试组件</h1>
+            </div>
+        )
+    }
+}
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
@@ -36,12 +46,12 @@ ReactDOM.render(
                     </li>
                 </ul>
                 <Route path='/' exact component={App}></Route>
-                <Route path='/erying' component={Erying}></Route>
-                <Route path='/qibinglian' component={Qibinglian}></Route>
+                <Route path='/:location' component={Test}></Route>
             </div>
         </BrowserRouter>
     </Provider>
     , document.getElementById('root')
 )
-
+// <Route path='/erying' component={Erying}></Route>
+// <Route path='/qibinglian' component={Qibinglian}></Route>
 

@@ -411,6 +411,15 @@ src/App.js
     )
 
 
+#### 其他组件
+
+##### url参数，Route组件参数可用冒号标识参数，在子组件内部通过this，location，match.params获取url的参数
+
+##### Redirect组件跳转，两个方式，一个使用Redirect，另一个是使用history的push()方法
+
+##### Switch只渲染一个子Route组件,多个组件值渲染第一个，动画，多个页面，404NotFound页面
+    
+
    
    
    
