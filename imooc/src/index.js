@@ -3,55 +3,60 @@ import ReactDOM from 'react-dom'
 import {createStore,applyMiddleware,compose} from 'redux'
 import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
-import {BrowserRouter,Route,Link} from 'react-router-dom'
+import {
+    BrowserRouter,
+    Route,
+    Link,
+    Redirect,
+    Switch
+} from 'react-router-dom'
 
-import App from './App'
-import {counter,addGun,removeGun,addGunAsync} from './index.redux'
+// import {counter} from './index.redux'
+import reducers from './reducer'
+import Auth from './Auth'
+import Dashboard from './Dashboard'
 
 const reduxDevTools = window.devToolsExtension?window.devToolsExtension():()=>{};
 // 创建store
-const store = createStore(counter,compose(
+const store = createStore(reducers,compose(
     applyMiddleware(thunk),
     reduxDevTools
 ));
-function Erying() {
-    return <h1>二营</h1>
-}
-function Qibinglian() {
-    return <h1>骑兵连</h1>
-}
+
+console.log(store.getState())
+
 class Test extends React.Component{
     render(){
         console.log(this.props)
         return (
             <div>
-                <h1>测试组件</h1>
+                <h1>测试组件:{this.props.match.params.myParam}</h1>
             </div>
         )
     }
 }
+
+/**
+ * 登录
+ * 没有登录信息，同意跳转到login
+ *
+ * 页面 导航+显示+注销
+ * yiying
+ * erying
+ * qibinglian
+ */
+
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <div>
-                <ul>
-                    <li>
-                        <Link to='/'>一营</Link>
-                    </li>
-                    <li>
-                        <Link to='/erying'>二营</Link>
-                    </li>
-                    <li>
-                        <Link to='/qibinglian'>骑兵连</Link>
-                    </li>
-                </ul>
-                <Route path='/' exact component={App}></Route>
-                <Route path='/:location' component={Test}></Route>
-            </div>
+            <Switch>
+                <Route path='/login' component={Auth}></Route>
+                <Route path='/dashboard' component={Dashboard}></Route>
+                <Redirect to='/dashboard'></Redirect>
+            </Switch>
         </BrowserRouter>
     </Provider>
     , document.getElementById('root')
 )
-// <Route path='/erying' component={Erying}></Route>
-// <Route path='/qibinglian' component={Qibinglian}></Route>
+
 
