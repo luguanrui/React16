@@ -4,11 +4,11 @@
 
 ### redux如何和react一起使用
 
-把store.dispatch()方法传递给组件，内部可以调用修改状态
+把store.dispatch()方法传递给子组件，内部可以调用修改状态
 
-subscribe订阅render函数，每次修改懂重新渲染
+subscribe订阅render函数，每次修改都要重新渲染
 
-redux相关内容，移到单独的文件index.redux.js单独管理
+redux的reducer和action相关内容，移到单独的文件index.redux.js单独管理
 
 
 ### 手动连接使用redux
@@ -124,7 +124,7 @@ src/App.js
         // 订阅render函数，如果组件的状态有变化，组件会重新执行
         store.subscribe(render);
         
-        scr/index.redux.js
+    scr/index.redux.js
         
         const ADD_GUN = '加机关枪'
         const REMOVE_GUN = '减机关枪'
@@ -161,7 +161,9 @@ src/App.js
     
 
     
-* npm install redux-devtools-extension --save并开启
+* 使用redux的compose，结合react-thunk和devToolsExtension，以方便调试和观察state
+
+    安装redux-devtools-extension插件：npm install redux-devtools-extension --save并开启
 
     新建store的时候判断window.devToolsExtension
     
@@ -198,7 +200,7 @@ src/App.js
 
     
 
-* 使用react-redux优雅的连接react和redux
+* 使用react-redux插件优雅的连接react和redux
 
     忘记subscribe，记住reducer，action和dispatch即可
     
@@ -278,12 +280,10 @@ src/App.js
     
     package.json配置
     
-         "babel": {
-            "presets": [
-              "react-app"
-            ],
+        "babel": {
+            "presets": ["react-app"],
             "plugins": ["transform-decorators-legacy"]
-          },
+        },
     
     src/App.js
    
@@ -328,11 +328,11 @@ src/App.js
         
     React后续
      
-        * 什么数据应该放在react里
-        
-        * redux管理数据
-        
-        * redux管理聊天数据   
+    * 什么数据应该放在react里
+    
+    * redux管理数据
+    
+    * redux管理聊天数据   
     
 ## react-router4基础知识
 
@@ -409,6 +409,10 @@ src/App.js
         </Provider>
         , document.getElementById('root')
     )
+       
+![images](./images/00.png)
+![images](./images/01.png)
+![images](./images/02.png)
 
 
 #### 其他组件
