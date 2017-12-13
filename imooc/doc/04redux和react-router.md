@@ -2,6 +2,119 @@
 
 ##  redux
 
+### redux是什么
+
+* 专注于状态管理的库，和react解耦
+
+* 单一状态，单项数据流
+
+* 核心概念：store，state，action，reducer
+
+#### 独立团逐渐发展，老李发现管不过来了
+
+* 人少的时候，无论是兵器和人员的变更，都是setState
+
+* 发展为千人大团后，老李决定，军事生活分开
+
+* 所有状态归赵政委（redux）管理，自己只打仗（view显示）
+
+#### 赵政委的主要功能
+
+* 老赵有一个保险箱（store），所有人的状态，在那里都有记录（state）
+
+* 需要改变的时候，需要告诉专员（dispatch）要干什么（action）
+
+* 处理变化的人（reducer）拿到state和action，生成新的state
+
+#### 老赵的正确使用方法
+
+* 首先通过reducer新建store，随时通过store.getState获取状态
+
+* 需要状态更改，store.dispatch(action)来修改状态
+
+* Reducer函数接受state和action，返回新的state，可以用store.subscribe监听每次修改
+
+#### 基础案例
+
+    安装redux：npm install redux --save
+    
+src/index.js
+
+    import {createStore} from 'redux'
+    
+    // 1、新建reducer
+    // 通过reducer来建立store
+    // reducer是根据老的state和action，生成新的状态
+    function counter(state=0,action) {
+        switch (action.type){
+            case '加机关枪':
+                return state+1;
+            case '减机关枪':
+                return state-1;
+            default:
+                return 10
+        }
+    }
+    // 2、新建store
+    const store = createStore(counter);
+    
+    // 获取state的初始值
+    const init = store.getState();
+    console.log(init);
+    
+    // 3、派发事件，传递action
+    store.dispatch({type:'加机关枪'});
+    console.log(store.getState())
+    store.dispatch({type:'加机关枪'});
+    console.log(store.getState())
+    store.dispatch({type:'减机关枪'});
+    console.log(store.getState())
+
+> 观察控制台的打印情况，10，11，12，11
+
+> 问题：这样打印存在代码冗余的问题，修改如下：
+
+    import {createStore} from 'redux'
+    
+    // 1、新建reducer
+    // 通过reducer来建立store
+    // reducer是根据老的state和action，生成新的状态
+    function counter(state=0,action) {
+        switch (action.type){
+            case '加机关枪':
+                return state+1;
+            case '减机关枪':
+                return state-1;
+            default:
+                return 10
+        }
+    }
+    // 2、新建store
+    const store = createStore(counter);
+    
+    // 获取state的初始值
+    const init = store.getState();
+    console.log(init);
+    
+    // 定义订阅一个事件
+    function listener() {
+        const current = store.getState();
+        console.log(`现在有机枪${current}把`);
+    }
+    
+    // 订阅事件
+    store.subscribe(listener);
+    
+    // 4、派发事件，传递action
+    store.dispatch({type:'加机关枪'});
+    store.dispatch({type:'加机关枪'});
+    store.dispatch({type:'减机关枪'});
+
+> subscribe()订阅监听事件，监听state的变化，监听不到state的初始值    
+    
+
+
+
 ### redux如何和react一起使用
 
 把store.dispatch()方法传递给子组件，内部可以调用修改状态
