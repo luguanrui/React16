@@ -19,7 +19,9 @@ const mongoose = require('mongoose')
 
 // 连接mongoose，并且使用imooc这个集合(如果没有回自动新建)
 const DB_URL = 'mongodb://127.0.0.1:27017/imooc'
+
 mongoose.connect(DB_URL)
+
 mongoose.connection.on('connected',function () {
     console.log('MongoDB连接成功')
 })
@@ -50,7 +52,7 @@ const User = mongoose.model('user',new mongoose.Schema({
 // })
 
 // 删除数据
-// User.remove({age:30},function (err,doc) {
+// User.remove({user:'李四'},function (err,doc) {
 //     console.log(doc)
 // })
 
@@ -64,8 +66,9 @@ const app = express()
 
 // 访问根路径，回调函数传入参数请求和相应，req，res，返回一个html片段
 app.get('/',function (req,res) {
-   res.send('<h1>hello lujing</h1>')
+   res.send('<h1>test data!</h1>')
 })
+
 // 访问/data，返回一个json字符串
 app.get('/data',function (req,res) {
     // 查找的是一个数据列表
@@ -73,10 +76,11 @@ app.get('/data',function (req,res) {
     //     res.json(doc)
     // })
     // 查找，只查找一条数据
-    // User.findOne({user:'张三'},function (err,doc) {
-    //     res.json(doc)
-    // })
+    User.findOne({user:'张三'},function (err,doc) {
+        res.json(doc)
+    })
 })
+
 
 // app监听端口
 app.listen(9093,function () {
