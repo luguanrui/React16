@@ -30,51 +30,51 @@
    
    多页应用案例：一个导航下面多个页面(最简单的应用)
    
-    import React from 'react'
-    import ReactDOM from 'react-dom'
-    import {createStore,applyMiddleware,compose} from 'redux'
-    import thunk from 'redux-thunk'
-    import {Provider} from 'react-redux'
-    import {BrowserRouter,Route,Link} from 'react-router-dom'
-    
-    import App from './App'
-    import {counter,addGun,removeGun,addGunAsync} from './index.redux'
-    
-    const reduxDevTools = window.devToolsExtension?window.devToolsExtension():()=>{};
-    // 创建store
-    const store = createStore(counter,compose(
-        applyMiddleware(thunk),
-        reduxDevTools
-    ));
-    function Erying() {
-        return <h1>二营</h1>
-    }
-    function Qibinglian() {
-        return <h1>骑兵连</h1>
-    }
-    ReactDOM.render(
-        <Provider store={store}>
-            <BrowserRouter>
-                <div>
-                    <ul>
-                        <li>
-                            <Link to='/'>一营</Link>
-                        </li>
-                        <li>
-                            <Link to='/erying'>二营</Link>
-                        </li>
-                        <li>
-                            <Link to='/qibinglian'>骑兵连</Link>
-                        </li>
-                    </ul>
-                    <Route path='/' exact component={App}></Route>
-                    <Route path='/erying' component={Erying}></Route>
-                    <Route path='/qibinglian' component={Qibinglian}></Route>
-                </div>
-            </BrowserRouter>
-        </Provider>
-        , document.getElementById('root')
-    )
+        import React from 'react'
+        import ReactDOM from 'react-dom'
+        import {createStore,applyMiddleware,compose} from 'redux'
+        import thunk from 'redux-thunk'
+        import {Provider} from 'react-redux'
+        import {BrowserRouter,Route,Link} from 'react-router-dom'
+        
+        import App from './App'
+        import {counter,addGun,removeGun,addGunAsync} from './index.redux'
+        
+        const reduxDevTools = window.devToolsExtension?window.devToolsExtension():()=>{};
+        // 创建store
+        const store = createStore(counter,compose(
+            applyMiddleware(thunk),
+            reduxDevTools
+        ));
+        function Erying() {
+            return <h1>二营</h1>
+        }
+        function Qibinglian() {
+            return <h1>骑兵连</h1>
+        }
+        ReactDOM.render(
+            <Provider store={store}>
+                <BrowserRouter>
+                    <div>
+                        <ul>
+                            <li>
+                                <Link to='/'>一营</Link>
+                            </li>
+                            <li>
+                                <Link to='/erying'>二营</Link>
+                            </li>
+                            <li>
+                                <Link to='/qibinglian'>骑兵连</Link>
+                            </li>
+                        </ul>
+                        <Route path='/' exact component={App}></Route>
+                        <Route path='/erying' component={Erying}></Route>
+                        <Route path='/qibinglian' component={Qibinglian}></Route>
+                    </div>
+                </BrowserRouter>
+            </Provider>
+            , document.getElementById('root')
+        )
     
 > 结果如下图所示：
        
@@ -90,63 +90,63 @@
 * url参数，Route组件参数可用冒号标识参数，在子组件内部通过 this.props.match.params.自定义参数 获取url的参数
 
 
-    import React from 'react'
-    import ReactDOM from 'react-dom'
-    import {createStore,applyMiddleware,compose} from 'redux'
-    import thunk from 'redux-thunk'
-    import {Provider} from 'react-redux'
-    import {BrowserRouter,Route,Link} from 'react-router-dom'
-    
-    import App from './App'
-    import {counter,addGun,removeGun,addGunAsync} from './index.redux'
-    
-    const reduxDevTools = window.devToolsExtension?window.devToolsExtension():()=>{};
-    // 创建store
-    const store = createStore(counter,compose(
-        applyMiddleware(thunk),
-        reduxDevTools
-    ));
-    function Erying() {
-        return <h1>二营</h1>
-    }
-    function Qibinglian() {
-        return <h1>骑兵连</h1>
-    }
-    class Test extends React.Component{
-        // componentWillMount(){
-        //     this.props.history.push('/erying');
-        // }
-        render(){
-            console.log(this.props)
-            return (
-                <div>
-                    <h1>测试组件:{this.props.match.params.myParam}</h1>
-                </div>
-            )
+        import React from 'react'
+        import ReactDOM from 'react-dom'
+        import {createStore,applyMiddleware,compose} from 'redux'
+        import thunk from 'redux-thunk'
+        import {Provider} from 'react-redux'
+        import {BrowserRouter,Route,Link} from 'react-router-dom'
+        
+        import App from './App'
+        import {counter,addGun,removeGun,addGunAsync} from './index.redux'
+        
+        const reduxDevTools = window.devToolsExtension?window.devToolsExtension():()=>{};
+        // 创建store
+        const store = createStore(counter,compose(
+            applyMiddleware(thunk),
+            reduxDevTools
+        ));
+        function Erying() {
+            return <h1>二营</h1>
         }
-    }
-    ReactDOM.render(
-        <Provider store={store}>
-            <BrowserRouter>
-                <div>
-                    <ul>
-                        <li>
-                            <Link to='/'>一营</Link>
-                        </li>
-                        <li>
-                            <Link to='/erying'>二营</Link>
-                        </li>
-                        <li>
-                            <Link to='/qibinglian'>骑兵连</Link>
-                        </li>
-                    </ul>
-                    <Route path='/' exact component={App}></Route>
-                    <Route path='/:myParam' component={Test}></Route>
-                </div>
-            </BrowserRouter>
-        </Provider>
-        , document.getElementById('root')
-    )
+        function Qibinglian() {
+            return <h1>骑兵连</h1>
+        }
+        class Test extends React.Component{
+            // componentWillMount(){
+            //     this.props.history.push('/erying');
+            // }
+            render(){
+                console.log(this.props)
+                return (
+                    <div>
+                        <h1>测试组件:{this.props.match.params.myParam}</h1>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <Provider store={store}>
+                <BrowserRouter>
+                    <div>
+                        <ul>
+                            <li>
+                                <Link to='/'>一营</Link>
+                            </li>
+                            <li>
+                                <Link to='/erying'>二营</Link>
+                            </li>
+                            <li>
+                                <Link to='/qibinglian'>骑兵连</Link>
+                            </li>
+                        </ul>
+                        <Route path='/' exact component={App}></Route>
+                        <Route path='/:myParam' component={Test}></Route>
+                    </div>
+                </BrowserRouter>
+            </Provider>
+            , document.getElementById('root')
+        )
     
 ![images](./images/history-location-match.png)
 
@@ -156,75 +156,75 @@
 
     只渲染匹配中的第一个Route
 
-
-    import React from 'react'
-    import ReactDOM from 'react-dom'
-    import {createStore,applyMiddleware,compose} from 'redux'
-    import thunk from 'redux-thunk'
-    import {Provider} from 'react-redux'
-    import {
-        BrowserRouter,
-        Route,
-        Link,
-        Redirect,
-        Switch
-    } from 'react-router-dom'
     
-    import App from './App'
-    import {counter,addGun,removeGun,addGunAsync} from './index.redux'
-    
-    const reduxDevTools = window.devToolsExtension?window.devToolsExtension():()=>{};
-    // 创建store
-    const store = createStore(counter,compose(
-        applyMiddleware(thunk),
-        reduxDevTools
-    ));
-    function Erying() {
-        return <h1>二营</h1>
-    }
-    function Qibinglian() {
-        return <h1>骑兵连</h1>
-    }
-    class Test extends React.Component{
-        // componentWillMount(){
-        //     this.props.history.push('/erying');
-        // }
-        render(){
-            console.log(this.props)
-            return (
-                <div>
-                    <h1>测试组件:{this.props.match.params.myParam}</h1>
-                </div>
-            )
+        import React from 'react'
+        import ReactDOM from 'react-dom'
+        import {createStore,applyMiddleware,compose} from 'redux'
+        import thunk from 'redux-thunk'
+        import {Provider} from 'react-redux'
+        import {
+            BrowserRouter,
+            Route,
+            Link,
+            Redirect,
+            Switch
+        } from 'react-router-dom'
+        
+        import App from './App'
+        import {counter,addGun,removeGun,addGunAsync} from './index.redux'
+        
+        const reduxDevTools = window.devToolsExtension?window.devToolsExtension():()=>{};
+        // 创建store
+        const store = createStore(counter,compose(
+            applyMiddleware(thunk),
+            reduxDevTools
+        ));
+        function Erying() {
+            return <h1>二营</h1>
         }
-    }
-    ReactDOM.render(
-        <Provider store={store}>
-            <BrowserRouter>
-                <div>
-                    <ul>
-                        <li>
-                            <Link to='/'>一营</Link>
-                        </li>
-                        <li>
-                            <Link to='/erying'>二营</Link>
-                        </li>
-                        <li>
-                            <Link to='/qibinglian'>骑兵连</Link>
-                        </li>
-                    </ul>
-                    <Switch>
-                        <Route path='/' exact component={App}></Route>
-                        <Route path='/erying' component={Erying}></Route>
-                        <Route path='/qibinglian' component={Qibinglian}></Route>
-                        <Route path='/:myParam' component={Test}></Route>
-                        {/*<Redirect to='/qibinglian'></Redirect>*/}
-                    </Switch>
-                </div>
-            </BrowserRouter>
-        </Provider>
-        , document.getElementById('root')
-    )
+        function Qibinglian() {
+            return <h1>骑兵连</h1>
+        }
+        class Test extends React.Component{
+            // componentWillMount(){
+            //     this.props.history.push('/erying');
+            // }
+            render(){
+                console.log(this.props)
+                return (
+                    <div>
+                        <h1>测试组件:{this.props.match.params.myParam}</h1>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <Provider store={store}>
+                <BrowserRouter>
+                    <div>
+                        <ul>
+                            <li>
+                                <Link to='/'>一营</Link>
+                            </li>
+                            <li>
+                                <Link to='/erying'>二营</Link>
+                            </li>
+                            <li>
+                                <Link to='/qibinglian'>骑兵连</Link>
+                            </li>
+                        </ul>
+                        <Switch>
+                            <Route path='/' exact component={App}></Route>
+                            <Route path='/erying' component={Erying}></Route>
+                            <Route path='/qibinglian' component={Qibinglian}></Route>
+                            <Route path='/:myParam' component={Test}></Route>
+                            {/*<Redirect to='/qibinglian'></Redirect>*/}
+                        </Switch>
+                    </div>
+                </BrowserRouter>
+            </Provider>
+            , document.getElementById('root')
+        )
     
     
 * 和redux配合
