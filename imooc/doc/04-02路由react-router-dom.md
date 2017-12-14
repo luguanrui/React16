@@ -77,11 +77,14 @@
         )
     
 > 结果如下图所示：
-       
+ 
+ 默认路由：       
 ![images](./images/00.png)
 
+点击二营：
 ![images](./images/01.png)
 
+点击骑兵连：
 ![images](./images/02.png)
 
 
@@ -89,6 +92,7 @@
 
 * url参数，Route组件参数可用冒号标识参数，在子组件内部通过 this.props.match.params.自定义参数 获取url的参数
 
+src/index.js
 
         import React from 'react'
         import ReactDOM from 'react-dom'
@@ -147,6 +151,8 @@
             </Provider>
             , document.getElementById('root')
         )
+        
+测试组件Test中打印props，结果如下：
     
 ![images](./images/history-location-match.png)
 
