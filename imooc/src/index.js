@@ -6,7 +6,6 @@ import {Provider} from 'react-redux'
 import {
     BrowserRouter,
     Route,
-    Link,
     Redirect,
     Switch
 } from 'react-router-dom'
@@ -24,17 +23,6 @@ const store = createStore(reducers,compose(
 ));
 
 console.log(store.getState())
-
-class Test extends React.Component{
-    render(){
-        console.log(this.props)
-        return (
-            <div>
-                <h1>测试组件:{this.props.match.params.myParam}</h1>
-            </div>
-        )
-    }
-}
 
 /**
  * 登录
