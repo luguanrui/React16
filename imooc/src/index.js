@@ -14,6 +14,8 @@ import {
 import reducers from './reducer'
 import Auth from './Auth'
 import Dashboard from './Dashboard'
+import './config'
+import 'antd-mobile/dist/antd-mobile.css'
 
 const reduxDevTools = window.devToolsExtension?window.devToolsExtension():()=>{};
 // 创建store
