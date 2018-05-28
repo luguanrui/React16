@@ -5,9 +5,14 @@
     npm install antd-mobile@next --save
     
     
-### 使用
+### 使用两种方式
+
+按需加载组件：
 
     import {Button} from 'antd-mobile'
+    
+引入整个文件    
+    
     import 'antd-mobile/dist/antd-mobile.css'
         
 ### 根据提示安装插件(按需加载)

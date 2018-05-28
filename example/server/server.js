@@ -22,14 +22,14 @@ const DB_URL = 'mongodb://127.0.0.1:27017/imooc'
 
 mongoose.connect(DB_URL)
 
-mongoose.connection.on('connected',function () {
+mongoose.connection.on('connected', function () {
     console.log('MongoDB连接成功')
 })
 
 // 类似于mysql的表，mongo里文档，字段的概念
-const User = mongoose.model('user',new mongoose.Schema({
-    user:{type:String,require:true},
-    age:{type:Number,require:true}
+const User = mongoose.model('user', new mongoose.Schema({
+    user: {type: String, require: true},
+    age: {type: Number, require: true}
 }))
 
 // 新增数据，一条指令可以添加多个数据，保存即可增加
@@ -65,24 +65,24 @@ const User = mongoose.model('user',new mongoose.Schema({
 const app = express()
 
 // 访问根路径，回调函数传入参数请求和相应，req，res，返回一个html片段
-app.get('/',function (req,res) {
-   res.send('<h1>test data!</h1>')
+app.get('/', function (req, res) {
+    res.send('<h1>test data!</h1>')
 })
 
 // 访问/data，返回一个json字符串
-app.get('/data',function (req,res) {
+app.get('/data', function (req, res) {
     // 查找的是一个数据列表
     // User.find({user:'张三'},function (err,doc) {
     //     res.json(doc)
     // })
     // 查找，只查找一条数据
-    User.findOne({user:'张三'},function (err,doc) {
+    User.findOne({user: '张三'}, function (err, doc) {
         res.json(doc)
     })
 })
 
 
 // app监听端口
-app.listen(9093,function () {
+app.listen(9093, function () {
     console.log('监听端口：9093')
 })

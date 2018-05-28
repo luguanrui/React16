@@ -10,7 +10,7 @@
 
 * 单一状态，单项数据流
 
-* 核心概念：store，state，action，reducer，
+* 核心概念：store，state，action，reducer
 
 * 方法：
 

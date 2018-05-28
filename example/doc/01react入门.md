@@ -1,4 +1,27 @@
+## react开发环境
+
+### create-react-app脚手架生成文件格式
+    npm install -g create-react-app
+    create-react-app project
+    cd project
+    npm start
+    
+### 如何安装和使用第三方库
+
+    npm install redux --save
+    
+    npm run eject 弹出配置文件，可以自定义配置webpack
+    
+    扩展package.json里的script字段，扩展npm run命令
+
+### 如何定制化官方提供的react脚手架的配置
+
+
+
 ## 组件间使用props传递数据
+
+
+没有使用props
 
     import React from 'react';
     
@@ -27,7 +50,9 @@
     
 #### 父组件向子组件中传递参数（子组件：类组件，函数式组件）
 
-父组件App向子组件YiYing传递参数yyz，子组件YiYing中使用this.props.yyz来接受参数
+父组件App向子组件YiYing传递参数yyz，
+
+如果子组件如果是类组件YiYing中使用this.props.yyz来接受参数
     
     import React from 'react';
     
@@ -52,7 +77,7 @@
     
     export default App
     
-    如果子组件是函数式组件的话，函数式组件中通过props参数来传递参数
+如果子组件是函数式组件的话，函数式组件中通过props参数来传递参数
     
     import React from 'react';
     
@@ -92,7 +117,11 @@ jsx本质是js，所以直接数据.map渲染列表
 
 constructor设置初始状态，记得执行super(props)
 
-state是一个不可变的对象，使用this.state获取，this.setState()来修改state
+state是一个不可变的对象，
+
+使用this.state获取state的值
+
+使用this.setState({...}) || this.setState((prevState,props)=>{...})来修改state
 
 
 初始化state，并渲染li，一营的士兵solders
