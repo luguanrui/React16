@@ -10,34 +10,35 @@
 
 * 单一状态，单项数据流
 
-* 核心概念：store，state，action，reducer
+* 核心概念：(state，action)=>reducer=>store
 
 * 方法：
-
-    * store.subscribe(listen)，
-    
-    * store.dispatch(action),
-    
-    * combineReducers({...})，
-    
-    * createStore(reducer,applyMiddleware(thunk))，
-    
-    * applyMiddleware(thunk)
-    
-    * compose(applyMiddleware(thunk),reduxDevTools)
-    
-    const reduxDevTools = window.devToolsExtension?window.devToolsExtension():()=>{};
-    
-    createStore(reducer,compose(applyMiddleware(thunk),reduxDevTools))
-        
-     
-
-    
-    创建store:
-    const store = createStore(reducer);
-    
-    合并reducers:
-    combineReducers({reducer1,reducer2,...})
+	
+	    store.subscribe(listen)
+	    
+	    store.dispatch(action)
+	    
+	    combineReducers({...})
+	    
+	        
+	    创建store:
+	    
+	    import {createStore，applyMiddleware,compose，combineReducers} from 'redux'
+	    
+	    import thunk from 'redux-thunk'
+	    
+	    const reduxDevTools = window.devToolsExtension?window.devToolsExtension():()=>{};
+	    
+	    // 创建store并引用中间件thunk，实现store的异步处理，同时引入插件reduxDevTools，方便检测state的数据流向
+	    
+	    const store = createStore(reducers,compose(
+	    	applyMiddleware（thunk),
+	    	reduxDevTools
+	    ));
+	    
+	    合并reducers:
+	    
+	    combineReducers({reducer1,reducer2,...})
 
 #### 独立团逐渐发展，老李发现管不过来了
 
@@ -478,3 +479,368 @@ src/App.js
     
     * redux管理聊天数据   
     
+    
+## redux相关插件的使用  
+
+redux，react-redux, redux-thunk,redux-devtools
+
+### redux
+
+import {createStore,applyMiddleware,compose,combineReducer} from 'redux'
+
+const store = createStore(reducers,compose(applyMiddleware(thunk), reduxDevTools))
+
+##### action是一个对象，或者是函数返回的对象
+
+	store.dispatch(action)
+
+> action是store数据的唯一来源
+> 
+> 通过store.dispatch(action)将action传递到store
+> 
+> action本质上是JavaScript的对象，action内必须通过一个字符串类型的typ字段来表示要执行的动作，除了type字段，其他的字段可自行定义
+
+> 注意：尽量减少在action中传递数据，action只是定义行为
+
+action的定义：
+
+	// simple
+	const ADD_TODO = 'ADD_TODO'
+	
+	{
+	  type: ADD_TODO,
+	  text: 'Build my first Redux app'
+	}
+	
+	// action比较多的时候，使用单独的模块
+	
+	import { ADD_TODO, REMOVE_TODO } from '../actionTypes'
+	
+**action创建函数**，只是简单的返回一个 action，好处是：更容易被移植和测试：
+
+	function addTodo(text) {
+	  return {
+	    type: ADD_TODO,
+	    text
+	  }
+	}
+	
+	调用：Redux 中只需把 action 创建函数的结果传给 dispatch() 方法即可发起一次 dispatch 过程 
+	
+	store.dispatch(addTodo(text))
+	
+或者创建一个 **被绑定的action创建函数** 来自动action：
+	
+	function addTodo(text) {
+	  return {
+	    type: ADD_TODO,
+	    text
+	  }
+	}
+	
+	const boundAddTodo = text => dispatch(addTodo(text))
+	
+	直接调用：boundAddTodo(text)
+	
+简化：使用react-redux中的提供的**connect()**帮助器来调用，**bindActionCreators()** 可以自动把多个 action 创建函数 绑定到 dispatch() 方法上
+
+
+##### reducer
+
+Reducers 指定了应用状态的变化如何响应 actions 并发送到 store 的，记住 actions 只是描述了有事情发生了这一事实，并没有描述应用如何更新 state
+
+设计state的结构
+
+reducer是**纯函数**，因此在reducer中允许如下操作：
+
+* 修改传入参数
+* 执行有副作用的操作，如 API 请求和路由跳转
+* 调用非纯函数，如 Date.now() 或 Math.random()
+
+redux首次执行的时候，state为undefined，所以需要初始化state
+
+
+action.js：
+
+	/*
+	 * action 类型
+	 */
+	
+	export const ADD_TODO = 'ADD_TODO';
+	export const TOGGLE_TODO = 'TOGGLE_TODO'
+	export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
+	
+	/*
+	 * 其它的常量
+	 */
+	
+	export const VisibilityFilters = {
+	  SHOW_ALL: 'SHOW_ALL',
+	  SHOW_COMPLETED: 'SHOW_COMPLETED',
+	  SHOW_ACTIVE: 'SHOW_ACTIVE'
+	}
+	
+	/*
+	 * action 创建函数
+	 */
+	
+	export function addTodo(text) {
+	  return { type: ADD_TODO, text }
+	}
+	
+	export function toggleTodo(index) {
+	  return { type: TOGGLE_TODO, index }
+	}
+	
+	export function setVisibilityFilter(filter) {
+	  return { type: SET_VISIBILITY_FILTER, filter }
+	}  
+	
+初始化state：
+
+	import { VisibilityFilters } from './actions'
+	
+	const initialState = {
+	  visibilityFilter: VisibilityFilters.SHOW_ALL,
+	  todos: []
+	};
+	
+	function todoApp(state, action) {
+	  if (typeof state === 'undefined') {
+	    return initialState
+	  }
+	
+	  // 这里暂不处理任何 action，
+	  // 仅返回传入的 state。
+	  return state
+	}
+	
+或者使用ES6语法中的设置初始值的方法：
+	
+	import { VisibilityFilters } from './actions'
+	
+	const initialState = {
+	  visibilityFilter: VisibilityFilters.SHOW_ALL,
+	  todos: []
+	};
+	
+	function todoApp(state = initialState, action) {
+	  // 这里暂不处理任何 action，
+	  // 仅返回传入的 state。
+	  return state
+	}
+	
+下面开始处理action：
+
+	
+	import { VisibilityFilters } from './actions'
+	
+	const initialState = {
+	  visibilityFilter: VisibilityFilters.SHOW_ALL,
+	  todos: []
+	};
+	
+	function todoApp(state = initialState, action) {
+	  switch (action.type) {
+	    case SET_VISIBILITY_FILTER:
+	      return Object.assign({}, state, {
+	        visibilityFilter: action.filter
+	      })
+	    default:
+	      return state
+	  }
+	}
+	
+注意：
+
+1. 不要修改 state。 使用 Object.assign() 新建了一个副本。不能这样使用 Object.assign(state, { visibilityFilter: action.filter })，因为它会改变第一个参数的值。你**必须把第一个参数设置为空对象**。你也可以开启对ES7提案对象展开运算符的支持, 从而使用 { ...state, ...newState } 达到相同的目的。
+
+
+2. 在 default 情况下返回旧的 state。遇到未知的 action 时，一定要返回旧的 state
+
+##### 处理多个actions时:
+
+	import {
+	  ADD_TODO,
+	  TOGGLE_TODO,
+	  SET_VISIBILITY_FILTER,
+	  VisibilityFilters
+	} from './actions'
+	
+	function todoApp(state = initialState, action) {
+	  switch (action.type) {
+	  
+	    case SET_VISIBILITY_FILTER:
+	      return Object.assign({}, state, {
+	        visibilityFilter: action.filter
+	      })
+	      
+	    case ADD_TODO:
+	      return Object.assign({}, state, {
+	        todos: [
+	          ...state.todos,
+	          {
+	            text: action.text,
+	            completed: false
+	          }
+	        ]
+	      })
+	      
+	    case TOGGLE_TODO:
+	      return Object.assign({}, state, {
+	        todos: state.todos.map((todo, index) => {
+	          if (index === action.index) {
+	            return Object.assign({}, todo, {
+	              completed: !todo.completed
+	            })
+	          }
+	          return todo
+	        })
+	      })
+	      
+	    default:
+	      return state
+	      
+	  }
+	}
+
+
+根据上面的拆分reducers，提取todos函数，传入state为数组
+
+	function todos(state = [], action) {
+	  switch (action.type) {
+	    case ADD_TODO:
+	      return [
+	        ...state,
+	        {
+	          text: action.text,
+	          completed: false
+	        }
+	      ]
+	    case TOGGLE_TODO:
+	      return state.map((todo, index) => {
+	        if (index === action.index) {
+	          return Object.assign({}, todo, {
+	            completed: !todo.completed
+	          })
+	        }
+	        return todo
+	      })
+	    default:
+	      return state
+	  }
+	}
+	
+	function todoApp(state = initialState, action) {
+	  switch (action.type) {
+	    case SET_VISIBILITY_FILTER:
+	      return Object.assign({}, state, {
+	        visibilityFilter: action.filter
+	      })
+	    case ADD_TODO:
+	      return Object.assign({}, state, {
+	        todos: todos(state.todos, action)
+	      })
+	    case TOGGLE_TODO:
+	      return Object.assign({}, state, {
+	        todos: todos(state.todos, action)
+	      })
+	    default:
+	      return state
+	  }
+	}
+	
+使用combineReducers合并reducers	
+
+	import { combineReducers } from 'redux'
+	import {
+	  ADD_TODO,
+	  TOGGLE_TODO,
+	  SET_VISIBILITY_FILTER,
+	  VisibilityFilters
+	} from './actions'
+	const { SHOW_ALL } = VisibilityFilters
+	
+	function visibilityFilter(state = SHOW_ALL, action) {
+	  switch (action.type) {
+	    case SET_VISIBILITY_FILTER:
+	      return action.filter
+	    default:
+	      return state
+	  }
+	}
+	
+	function todos(state = [], action) {
+	  switch (action.type) {
+	    case ADD_TODO:
+	      return [
+	        ...state,
+	        {
+	          text: action.text,
+	          completed: false
+	        }
+	      ]
+	    case TOGGLE_TODO:
+	      return state.map((todo, index) => {
+	        if (index === action.index) {
+	          return Object.assign({}, todo, {
+	            completed: !todo.completed
+	          })
+	        }
+	        return todo
+	      })
+	    default:
+	      return state
+	  }
+	}
+	
+	const todoApp = combineReducers({
+	  visibilityFilter,
+	  todos
+	})
+	
+	export default todoApp	
+
+
+使用redux中的combineReducers() 	来合成reducers
+
+##### store
+
+* 维持应用的 state
+* 提供 **getState()** 方法获取 state
+* 提供 **dispatch(action)** 方法更新 state
+* 通过 **subscribe(listener)** 注册监听器
+* 通过 **subscribe(listener)** 返回的函数注销监听器
+	
+	
+
+### react-redux
+
+	import {Provider,connect} from 'react-redux'
+	
+react-redux仅有两个api，Provider和connect
+	
+### redux-thunk
+
+	import thunk from 'redux-thunk'	
+
+> 默认情况下，createStore() 所创建的 Redux store 没有使用 middleware，所以只支持 同步数据流。
+
+> 你可以使用 applyMiddleware() 来增强 createStore()。虽然这不是必须的，但是它可以帮助你用简便的方式来描述异步的 action。
+
+> 像 redux-thunk 或 redux-promise 这样支持异步的 middleware 都包装了 store 的 dispatch() 方法，以此来让你 dispatch 一些除了 action 以外的其他内容，例如：函数或者 Promise。你所使用的任何 middleware 都可以以自己的方式解析你 dispatch 的任何内容，并继续传递 actions 给下一个 middleware。比如，支持 Promise 的 middleware 能够拦截 Promise，然后为每个 Promise 异步地 dispatch 一对 begin/end actions。
+
+> 当 middleware 链中的最后一个 middleware 开始 dispatch action 时，这个 action 必须是一个普通对象。这是 同步式的 Redux 数据流 开始的地方（译注：这里应该是指，你可以使用任意多异步的 middleware 去做你想做的事情，但是需要使用普通对象作为最后一个被 dispatch 的 action ，来将处理流程带回同步方式）。
+
+
+
+
+
+
+
+
+
+
+
+
+	
