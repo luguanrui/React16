@@ -24,7 +24,7 @@ const store = createStore(reducers,compose(
     reduxDevTools
 ));
 
-console.log(store.getState())
+console.dir(store.getState())
 
 /**
  * 登录

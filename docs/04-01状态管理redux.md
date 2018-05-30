@@ -1,8 +1,42 @@
 ##  redux
     
-    相关的插件
-    redux-thunk
-    redux-devtools-extension
+redux：
+
+* 	createStore(reducers,compose(applyMiddleware(thunk), reduxDevTools))
+*  applyMiddleware(thunk)
+*  compose()
+*  combineReducer({...})
+*  store.dispatch(action)
+*  store.subscribe(fun)
+*  store.getState()
+*  reducers(state,action)
+
+react-redux：
+
+* \<Provider store={store}>\<APP/>\</Provider>,忘掉subscribe，不需要再将action作为props来传入
+* connect，将外部获取组件需要的信息，将actions作为props来传递
+* connect的修饰符，npm install babel-plugin-transform-decorators-legacy --save-dev插件，需要配置package.json文件，@connect(state=>{state:num},{actions函数})
+
+
+redux-thunk:
+
+异步数据流，redux-thunk中间件可以让action创建函数先不返回一个action对象，而是返回一个函数，函数传递两个参数(dispatch,getState),在函数体内进行业务逻辑的封装
+
+	  export function addGunAsync() {
+	      return dispatch=>{
+	          setTimeout(()=>{
+	              dispatch(addGun())
+	          },2000)
+	      }
+	  }
+
+redux-devtools-extension：
+
+* 新建store的时候判断window.devToolsExtension
+
+* 使用compose结合thunk和window.devToolsExtension
+
+* 调试窗的redux选项卡实时看到state
     
 ### redux是什么
 
@@ -102,7 +136,7 @@ src/index.js
 
 > 观察控制台的打印情况，10，11，12，11
 
-> 问题：这样打印存在代码冗余的问题，修改如下：
+问题：上面的打印存在代码冗余的问题，那就是派发一次action就要console一下，因此可以监听一下派发事件：
 
     import {createStore} from 'redux'
     
@@ -140,7 +174,7 @@ src/index.js
     store.dispatch({type:'加机关枪'});
     store.dispatch({type:'减机关枪'});
 
-> subscribe()订阅监听事件，监听state的变化，监听不到state的初始值    
+> subscribe()订阅监听事件，监听state的变化，监听不到state的初始值，使用store.getState()来获取state  
     
 
 
@@ -341,7 +375,7 @@ src/App.js
         store.subscribe(render);
     
 
-### react-redux   
+### react-redux，只有两个api，Provider，connect  
 
     import {Provider,connect} from 'react-redux' 
 
@@ -353,7 +387,7 @@ src/App.js
     
     react-redux具体的使用
     
-    provider组件在应用最外层，传入store即可，只用一次
+    provider组件在应用最外层，传入store即可，只用一次，不需要再写subscribe()
     
      src/index.js
     
@@ -364,7 +398,6 @@ src/App.js
         import {Provider} from 'react-redux'
         
         import App from './App'
-        import {counter,addGun,removeGun,addGunAsync} from './index.redux'
         
         const reduxDevTools = window.devToolsExtension?window.devToolsExtension():()=>{};
         // 创建store
@@ -481,8 +514,6 @@ src/App.js
     
     
 ## redux相关插件的使用  
-
-redux，react-redux, redux-thunk,redux-devtools
 
 ### redux
 

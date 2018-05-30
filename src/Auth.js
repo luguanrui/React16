@@ -12,6 +12,7 @@ import {login,getUserData} from "./Auth.redux";
 
 class Auth extends React.Component{
     componentDidMount(){
+        // 获取数据
         this.props.getUserData()
     }
     render(){
