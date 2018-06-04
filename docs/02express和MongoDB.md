@@ -77,6 +77,8 @@
 
 ### mongoose是什么
 
+[参考资料](https://www.cnblogs.com/xiaohuochai/p/7215067.html?utm_source=itdadao&utm_medium=referral)
+
 Mongoose是在node.js环境下对mongodb进行便捷操作的对象模型工具
 
 因此，要使用mongoose，则必须安装node.js环境以及mongodb数据库
